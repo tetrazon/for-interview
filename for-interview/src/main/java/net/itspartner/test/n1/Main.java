@@ -15,7 +15,7 @@ public class Main {
 		Node<Integer> linkedListHead = new Node<>(1);
 		linkedListHead.setNextNode(new Node<>(2)).setNextNode(new Node<>(3)).setNextNode(new Node<>(4));
 
-		print(linkedListHead);
+		print(reverse(linkedListHead));
 	}
 
 	private static void print(Node<Integer> head) {
@@ -32,7 +32,14 @@ public class Main {
 	}
 
 	private static Node<Integer> reverse(Node<Integer> head) {
-		// TODO implement
-		return null;
+		Node<Integer> tail = null;
+		if (head.getNextNode().getNextNode() != null) {
+			tail = reverse(head.getNextNode());
+		} else {
+			tail = head.getNextNode();
+		}
+		head.getNextNode().setNextNode(head);
+		head.setNextNode(null);
+		return tail;
 	}
 }
